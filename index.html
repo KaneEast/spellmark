@@ -1,0 +1,150 @@
+<!doctype html>
+<!-- 平时不用改这个文件。文案、按钮、截图、App 名都在 assets/js/content.js -->
+<html lang="zh-Hans" data-theme-init>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Spellmark</title>
+<meta name="description" content="听播客学语言的 iPhone 客户端：逐句字幕、对照译文、逐词查词。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Spellmark">
+<meta property="og:description" content="听播客学语言的 iPhone 客户端：逐句字幕、对照译文、逐词查词。">
+<meta property="og:image" content="assets/media/screenshot-player.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#f0f2f4" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#131516" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/css/site.css">
+<script>
+  // 先于首屏绘制定主题，避免刷新时闪一下白
+  try {
+    var t = localStorage.getItem("theme");
+    if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
+  } catch (e) {}
+</script>
+</head>
+<body>
+
+<a class="skip" href="#main" data-i18n="ui.skip">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <a class="brand" href="#top">
+      <!-- App 图标本尊，几何与 AppIcon.png 完全一致 -->
+      <svg class="brand-mark" viewBox="0 0 1024 1024" aria-hidden="true">
+        <rect width="1024" height="1024" rx="229" fill="#2E6B54"/>
+        <rect x="202" y="304" width="519" height="95" rx="47.5" fill="#FAF8F5"/>
+        <rect x="202" y="464" width="619" height="95" rx="47.5" fill="#9ED8BE"/>
+        <rect x="202" y="624" width="379" height="95" rx="47.5" fill="#FAF8F5"/>
+      </svg>
+      <span class="brand-name" data-brand-name>Spellmark</span>
+    </a>
+
+    <nav class="topnav" data-nav aria-label="Sections"></nav>
+
+    <div class="topbar-actions">
+      <div class="langswitch" data-langswitch role="group"></div>
+      <button class="iconbtn" data-theme-toggle type="button" aria-label="切换深浅色">
+        <svg class="ico-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.6"/><g class="rays"><path d="M12 1.8v3M12 19.2v3M1.8 12h3M19.2 12h3M4.8 4.8l2.1 2.1M17.1 17.1l2.1 2.1M19.2 4.8l-2.1 2.1M6.9 17.1l-2.1 2.1"/></g></svg>
+        <svg class="ico-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.8 8.8 0 0 1 9.4 3.5a8.8 8.8 0 1 0 11.1 11.1z"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- 首屏 -->
+  <section class="hero" id="top">
+    <div class="glow" aria-hidden="true"></div>
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow" data-i18n="hero.eyebrow"></p>
+        <h1 class="hero-title" data-i18n="hero.title"></h1>
+        <p class="lead" data-i18n="hero.lead"></p>
+        <div class="cta-row" data-cta></div>
+      </div>
+      <div class="hero-visual" data-hero-visual></div>
+    </div>
+  </section>
+
+  <!-- 字幕演示 -->
+  <section class="demo">
+    <div class="wrap">
+      <div class="demo-card" data-demo></div>
+      <p class="demo-caption" data-i18n="demo.caption"></p>
+    </div>
+  </section>
+
+  <!-- 三步 -->
+  <section class="band" id="how">
+    <div class="wrap">
+      <h2 class="section-title" data-i18n="steps.title"></h2>
+      <p class="section-lead" data-i18n="steps.lead"></p>
+      <div class="steps" data-steps></div>
+    </div>
+  </section>
+
+  <!-- 功能 -->
+  <section class="band" id="features">
+    <div class="wrap">
+      <h2 class="section-title" data-i18n="features.title"></h2>
+      <div class="features" data-features></div>
+    </div>
+  </section>
+
+  <!-- 截图（gallery.items 为空时整块隐藏） -->
+  <section class="band band-tint" id="screens" data-section="gallery" hidden>
+    <div class="wrap">
+      <h2 class="section-title" data-i18n="gallery.title"></h2>
+      <p class="section-lead" data-i18n="gallery.lead"></p>
+    </div>
+    <div class="gallery" data-gallery></div>
+  </section>
+
+  <!-- 视频（video.src 为空时整块隐藏） -->
+  <section class="band" id="video" data-section="video" hidden>
+    <div class="wrap">
+      <h2 class="section-title" data-i18n="video.title"></h2>
+      <p class="section-lead" data-i18n="video.lead"></p>
+      <div class="videoframe" data-video></div>
+    </div>
+  </section>
+
+  <!-- 关于 -->
+  <section class="band band-tint" id="about">
+    <div class="wrap">
+      <h2 class="section-title" data-i18n="notes.title"></h2>
+      <div class="notes" data-notes></div>
+    </div>
+  </section>
+
+  <!-- 结尾 -->
+  <section class="closing">
+    <div class="wrap">
+      <h2 class="closing-title" data-i18n="closing.title"></h2>
+      <div class="cta-row cta-center" data-cta></div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <p class="footer-line" data-i18n="footer.line"></p>
+    <nav class="footer-links" data-footer-links></nav>
+    <p class="footer-copy"><span data-year></span> · <span data-brand-name>Spellmark</span></p>
+  </div>
+</footer>
+
+<noscript>
+  <div class="wrap noscript">
+    Spellmark 是一个带语言学习功能的 iPhone 播客客户端：逐句字幕、对照译文、逐词查词。
+    这个页面需要 JavaScript 才能显示完整内容。
+  </div>
+</noscript>
+
+<script src="assets/js/content.js"></script>
+<script src="assets/js/site.js"></script>
+</body>
+</html>

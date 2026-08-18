@@ -1,0 +1,41 @@
+# GitHub Pages 部署 workflow —— 这份是模板，放在这里不会生效。
+#
+# 用法：复制到仓库根目录的 .github/workflows/pages.yml，
+#      再去 GitHub → Settings → Pages → Source 选 "GitHub Actions"。
+#
+#   mkdir -p .github/workflows && cp site/deploy-to-pages.yml .github/workflows/pages.yml
+#
+# 之后每次 push 到 main 且动了 site/ 里的东西，就会自动发布。
+
+name: Deploy site to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+    paths: ["site/**", ".github/workflows/pages.yml"]
+  workflow_dispatch: # 也可以在 Actions 页面手动点一次
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# 同时只跑一个部署，排队的后来者直接顶掉前面那个
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site # 只发这个目录，仓库其余部分不上传
+      - id: deployment
+        uses: actions/deploy-pages@v4
