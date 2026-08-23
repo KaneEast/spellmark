@@ -76,6 +76,7 @@
 
   function renderNav(lang) {
     var nav = $("[data-nav]");
+    if (!nav) return;
     nav.textContent = "";
     S.nav.forEach(function (item) {
       var target = document.querySelector(item.href);
@@ -124,6 +125,7 @@
 
   function renderHero(lang) {
     var box = $("[data-hero-visual]");
+    if (!box) return;
     var imgs = images(S.hero.image);
     box.textContent = "";
     box.classList.toggle("multi", imgs.length > 1);
@@ -134,6 +136,7 @@
 
   function renderSteps(lang) {
     var box = $("[data-steps]");
+    if (!box) return;
     box.textContent = "";
     S.steps.items.forEach(function (s) {
       var card = el("article", "step reveal");
@@ -146,6 +149,7 @@
 
   function renderFeatures(lang) {
     var box = $("[data-features]");
+    if (!box) return;
     box.textContent = "";
     var anyImage = S.features.items.some(function (f) { return images(f.image).length > 0; });
     box.classList.toggle("as-grid", !anyImage);
@@ -167,6 +171,7 @@
 
   function renderGallery(lang) {
     var section = $('[data-section="gallery"]');
+    if (!section) return;
     var items = (S.gallery.items || []).filter(function (i) { return i.src; });
     section.hidden = items.length === 0;
     if (section.hidden) return;
@@ -184,6 +189,7 @@
 
   function renderVideo(lang) {
     var section = $('[data-section="video"]');
+    if (!section) return;
     section.hidden = !S.video.src;
     if (section.hidden) return;
     var box = $("[data-video]");
@@ -199,6 +205,7 @@
 
   function renderNotes(lang) {
     var box = $("[data-notes]");
+    if (!box) return;
     box.textContent = "";
     S.notes.items.forEach(function (n) {
       var card = el("article", "note reveal");
@@ -208,8 +215,50 @@
     });
   }
 
+  /* ── 条款 / 隐私：正文也在 content.js 里，⚠️ 三种语言都要填 ─────────────
+   *  这两页共用 index.html 那套壳（导航栏 · 语言切换 · 深浅色 · 页脚），
+   *  所以上面每个渲染函数都得容忍自己的挂载点不存在——那就是那一排
+   *  `if (!box) return;` 的来由。⛔ 别为这两页另开一个 js。
+   * --------------------------------------------------------------------- */
+  function renderLegal(lang) {
+    var box = $("[data-legal]");
+    if (!box) return;
+    var doc = S.legal[box.getAttribute("data-legal")];
+    box.textContent = "";
+
+    box.appendChild(el("h1", "legal-title", str(doc.title, lang)));
+    var updated = str(S.legal.updatedLabel, lang) + " " + S.legal.updated;
+    box.appendChild(el("p", "legal-updated", updated));
+    if (str(doc.intro, lang)) box.appendChild(el("p", "legal-intro", str(doc.intro, lang)));
+
+    doc.sections.forEach(function (sec) {
+      var block = el("section", "legal-block");
+      block.appendChild(el("h2", null, str(sec.title, lang)));
+      // 一段一个 <p>：文案里用 \n 分段。
+      // ⚠️ **不走 innerHTML**——正文是纯文本，开了那个口子以后谁往 content.js 里
+      // 粘一段带尖括号的东西都会变成真标签。`**重点**` 由下面自己拼 DOM。
+      str(sec.body, lang).split("\n").forEach(function (para) {
+        if (!para.trim()) return;
+        var pEl = el("p");
+        para.trim().split("**").forEach(function (chunk, i) {
+          if (!chunk) return;
+          pEl.appendChild(i % 2 ? el("strong", null, chunk) : document.createTextNode(chunk));
+        });
+        block.appendChild(pEl);
+      });
+      box.appendChild(block);
+    });
+
+    var back = el("a", "legal-back", str(S.legal.back, lang));
+    back.href = "index.html";
+    box.appendChild(back);
+
+    document.title = str(doc.title, lang) + " · " + S.brand.name;
+  }
+
   function renderFooter(lang) {
     var box = $("[data-footer-links]");
+    if (!box) return;
     box.textContent = "";
     (S.footer.links || []).forEach(function (l) {
       var a = el("a", null, str(l.label, lang));
@@ -225,6 +274,7 @@
 
   function renderDemo(lang) {
     var box = $("[data-demo]");
+    if (!box) return;
     box.textContent = "";
     var wordNodes = [];
 
@@ -299,7 +349,7 @@
 
     var title = fill(S.brand.name);
     var desc = t("brand.tagline", lang);
-    document.title = title;
+    document.title = title; // 条款 / 隐私那两页由 renderLegal 覆盖成自己的标题
     setMeta('meta[name="description"]', desc);
     setMeta('meta[property="og:title"]', title);
     setMeta('meta[property="og:description"]', desc);
@@ -321,6 +371,7 @@
     renderGallery(lang);
     renderVideo(lang);
     renderNotes(lang);
+    renderLegal(lang);
     renderFooter(lang);
     renderNav(lang); // 放最后：要先知道哪些区块是空的
     observeReveal();
@@ -371,7 +422,7 @@
   render(detectLang());
 
   var topbar = $(".topbar");
-  var onScroll = function () { topbar.classList.toggle("is-stuck", window.scrollY > 4); };
+  var onScroll = function () { if (topbar) topbar.classList.toggle("is-stuck", window.scrollY > 4); };
   onScroll();
   window.addEventListener("scroll", onScroll, { passive: true });
 })();

@@ -1,0 +1,74 @@
+<!doctype html>
+<!-- 平时不用改这个文件。条款正文在 assets/js/content.js 的 legal 里 -->
+<html lang="zh-Hans" data-theme-init>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>隐私政策 · Spellmark</title>
+<meta name="description" content="Spellmark 没有服务器也没有账号，你的订阅、字幕和生词都留在设备上。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="隐私政策 · Spellmark">
+<meta property="og:description" content="Spellmark 没有服务器也没有账号，你的订阅、字幕和生词都留在设备上。">
+<meta property="og:url" content="https://kaneeast.github.io/spellmark/privacy.html">
+<!-- 抓链接预览的爬虫不认相对路径，og:image 必须是绝对地址 -->
+<meta property="og:image" content="https://kaneeast.github.io/spellmark/assets/media/screenshot-player.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#f0f2f4" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#131516" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/css/site.css">
+<script>
+  // 先于首屏绘制定主题，避免刷新时闪一下白
+  try {
+    var t = localStorage.getItem("theme");
+    if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
+  } catch (e) {}
+</script>
+</head>
+<body>
+
+<a class="skip" href="#main" data-i18n="ui.skip">跳到正文</a>
+
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <!-- ⚠️ 这两页的 brand 指回首页，不是 #top -->
+    <a class="brand" href="index.html">
+      <svg class="brand-mark" viewBox="0 0 1024 1024" aria-hidden="true">
+        <rect width="1024" height="1024" rx="229" fill="#2E6B54"/>
+        <rect x="202" y="304" width="519" height="95" rx="47.5" fill="#FAF8F5"/>
+        <rect x="202" y="464" width="619" height="95" rx="47.5" fill="#9ED8BE"/>
+        <rect x="202" y="624" width="379" height="95" rx="47.5" fill="#FAF8F5"/>
+      </svg>
+      <span class="brand-name" data-brand-name>Spellmark</span>
+    </a>
+
+    <div class="topbar-actions">
+      <div class="langswitch" data-langswitch role="group"></div>
+      <button class="iconbtn" data-theme-toggle type="button" aria-label="切换深浅色">
+        <svg class="ico-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.6"/><g class="rays"><path d="M12 1.8v3M12 19.2v3M1.8 12h3M19.2 12h3M4.8 4.8l2.1 2.1M17.1 17.1l2.1 2.1M19.2 4.8l-2.1 2.1M6.9 17.1l-2.1 2.1"/></g></svg>
+        <svg class="ico-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.8 8.8 0 0 1 9.4 3.5a8.8 8.8 0 1 0 11.1 11.1z"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <article class="wrap legal" data-legal="privacy"></article>
+</main>
+
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <p class="footer-line" data-i18n="footer.line"></p>
+    <nav class="footer-links" data-footer-links></nav>
+    <p class="footer-copy"><span data-year></span> · <span data-brand-name>Spellmark</span></p>
+  </div>
+</footer>
+
+<noscript>
+  <div class="wrap noscript">这一页需要 JavaScript 才能显示政策正文。简单说：Spellmark 没有服务器也没有账号，你的数据留在设备上。有疑问写信到 inmank99@gmail.com。</div>
+</noscript>
+
+<script src="assets/js/content.js"></script>
+<script src="assets/js/site.js"></script>
+</body>
+</html>

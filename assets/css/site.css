@@ -344,3 +344,28 @@ a { color: inherit; }
   .gallery { padding-inline: 20px; }
   .footer-copy { margin-left: 0; width: 100%; }
 }
+
+/* ── 条款 / 隐私那两页 ───────────────────────────────────────────────────
+   正文在 content.js 的 legal 里，这里只管排版。
+   ⚠️ 行宽刻意压到 68ch：这两页是要被人真的读完的，
+   通栏的 1140px 一行三十多个字，读两段就想关掉。 */
+.legal { max-width: 68ch; padding-block: clamp(48px, 8vw, 88px) clamp(64px, 10vw, 112px); }
+.legal-title { font-size: clamp(28px, 4vw, 40px); letter-spacing: -.025em; }
+.legal-updated { margin-top: 10px; font-size: 13.5px; color: var(--text-3); }
+.legal-intro {
+  margin-top: 22px; font-size: clamp(16px, 1.8vw, 18px); line-height: 1.7; color: var(--text-2);
+  padding: 16px 18px; background: var(--accent-soft);
+  border: 1px solid var(--accent-line); border-radius: var(--r-md);
+}
+.legal-block { margin-top: 38px; }
+.legal-block h2 {
+  font-size: clamp(18px, 2.2vw, 21px); letter-spacing: -.015em;
+  padding-bottom: 10px; border-bottom: 1px solid var(--line-soft);
+}
+.legal-block p { margin-top: 14px; line-height: 1.75; color: var(--text-2); }
+.legal-block p strong { color: var(--text); font-weight: 620; }
+.legal-back {
+  display: inline-block; margin-top: 48px; font-size: 15px;
+  color: var(--text-2); text-decoration: none;
+}
+.legal-back:hover { color: var(--accent); }
