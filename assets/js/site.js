@@ -123,14 +123,23 @@
     });
   }
 
+  // 首屏放几张图，决定它长什么样：
+  //   1 张   → 一台大手机（device-lg）
+  //   2–3 张 → 并排缩小（.multi）
+  //   4 张以上 → 「一排 5 个」的小图墙（.wall），9 张就是 5 + 4 两排
+  // ⚠️ **分档写在这一处**，CSS 只认这三个 class——两边各判一次必然漂。
+  var HERO_WALL_MIN = 4;
+
   function renderHero(lang) {
     var box = $("[data-hero-visual]");
     if (!box) return;
     var imgs = images(S.hero.image);
     box.textContent = "";
-    box.classList.toggle("multi", imgs.length > 1);
-    imgs.forEach(function (src) {
-      box.appendChild(device(src, str(S.hero.imageAlt, lang), imgs.length === 1));
+    box.classList.toggle("multi", imgs.length > 1 && imgs.length < HERO_WALL_MIN);
+    box.classList.toggle("wall", imgs.length >= HERO_WALL_MIN);
+    // ⚠️ alt 只给第一张：9 张共用一句说明，读屏念 9 遍同一句是纯噪音。
+    imgs.forEach(function (src, i) {
+      box.appendChild(device(src, i === 0 ? str(S.hero.imageAlt, lang) : "", imgs.length === 1));
     });
   }
 

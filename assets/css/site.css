@@ -220,6 +220,24 @@ a { color: inherit; }
 .device img { width: 100%; border-radius: 40px; background: #131516; }
 .device-lg { width: min(330px, 82vw); }
 
+/* 首屏并排两三台 */
+.hero-visual.multi { flex-wrap: wrap; gap: 16px; }
+.hero-visual.multi .device { width: min(210px, 40vw); border-radius: 34px; padding: 7px; }
+.hero-visual.multi .device img { border-radius: 28px; }
+
+/* 首屏小图墙：一排 5 个，9 张就是 5 + 4 两排。
+   ⚠️ 用 flex + 定死的 flex-basis（不是 grid）——最后一排不满时要**居中**，
+   grid 会把它按列吸到左边，看着像漏了一块。 */
+.hero-visual.wall { flex-wrap: wrap; justify-content: center; gap: 10px; }
+.hero-visual.wall .device {
+  flex: 0 0 calc(20% - 8px); width: auto;
+  padding: 3px; border-radius: 15px; box-shadow: var(--shadow);
+}
+.hero-visual.wall .device img { border-radius: 12px; }
+/* ⚠️ 灵动岛那道横杠在这个尺寸下必须去掉：它的 top 是写死的 20px，
+   缩到这么小就掉到屏幕中间去了，看着像一条脏东西。 */
+.hero-visual.wall .device::after { display: none; }
+
 /* ── 字幕演示 ──────────────────────────────────────────────────────────── */
 .demo { padding: clamp(8px, 2vw, 24px) 0 clamp(48px, 7vw, 88px); }
 
@@ -339,6 +357,9 @@ a { color: inherit; }
 
 @media (max-width: 720px) {
   body { font-size: 16px; }
+  /* 📏 手机上一排 5 个只有 60pt 出头，什么都看不出来——退到一排 3 个。
+     ⛔ 别为了保住「两排」把它压得更小，那样这块图就白放了。 */
+  .hero-visual.wall .device { flex-basis: calc(33.333% - 7px); }
   .topnav { display: none; }
   .wrap { padding-inline: 20px; }
   .gallery { padding-inline: 20px; }
