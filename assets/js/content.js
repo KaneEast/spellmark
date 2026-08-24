@@ -222,13 +222,24 @@ window.SITE = {
   gallery: {
     title: { zh: "界面", en: "Screens", ja: "画面" },
     lead: { zh: "深浅两套配色跟随系统。", en: "Light and dark, following the system.", ja: "ライト／ダークはシステムに追従します。" },
+    // ⚠️ caption 可以不写（`site.js` 里判了 `if (cap)`），不写就只有图没有说明。
+    //    下面 shot-1…9 的 caption 是空的，**填之前请自己看一眼图**——
+    //    它们是按截图时间排的，顺序未必是想给人看的顺序。
+    // ⚠️ 三种语言缺一种会静默回落到中文（`MAINTAINING.md` 那条）。
     items: [
       {
         src: "assets/media/screenshot-player.png",
         caption: { zh: "播放页 · 字幕与译文", en: "Player · transcript and translation", ja: "再生画面・字幕と訳文" },
       },
-      // { src: "assets/media/screenshot-library.png",
-      //   caption: { zh: "资料库", en: "Library", ja: "ライブラリ" } },
+      { src: "assets/media/shot-1.png", caption: { zh: "", en: "", ja: "" } },
+      { src: "assets/media/shot-2.png", caption: { zh: "", en: "", ja: "" } },
+      { src: "assets/media/shot-3.png", caption: { zh: "", en: "", ja: "" } },
+      { src: "assets/media/shot-4.png", caption: { zh: "", en: "", ja: "" } },
+      { src: "assets/media/shot-5.png", caption: { zh: "", en: "", ja: "" } },
+      { src: "assets/media/shot-6.png", caption: { zh: "", en: "", ja: "" } },
+      { src: "assets/media/shot-7.png", caption: { zh: "", en: "", ja: "" } },
+      { src: "assets/media/shot-8.png", caption: { zh: "", en: "", ja: "" } },
+      { src: "assets/media/shot-9.png", caption: { zh: "", en: "", ja: "" } },
     ],
   },
 
