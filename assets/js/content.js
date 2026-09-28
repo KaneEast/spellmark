@@ -44,10 +44,8 @@ window.SITE = {
   cta: [
     {
       style: "primary",
-      disabled: true,
-      href: "",
-      label: { zh: "即将上架 App Store", en: "Coming to the App Store", ja: "App Store で近日公開", es: "Próximamente en el App Store", ko: "App Store 출시 예정" },
-      note: { zh: "上架后这里换成下载链接", en: "This becomes the download link at launch", ja: "公開後はダウンロードリンクに差し替わります", es: "Aquí irá el enlace de descarga cuando se publique", ko: "출시 후 이 자리에 다운로드 링크가 들어갑니다" },
+      href: "https://apps.apple.com/jp/app/spellmark/id6802482442?l=en-US",
+      label: { zh: "在 App Store 下载", en: "Download on the App Store", ja: "App Store でダウンロード", es: "Descargar en el App Store", ko: "App Store에서 다운로드" },
     },
     {
       style: "secondary",
@@ -150,11 +148,11 @@ window.SITE = {
   steps: {
     title: { zh: "听 → 看字幕 → 逐词对照", en: "Listen → read along → word by word", ja: "聴く → 字幕を見る → 単語ごとに", es: "Escuchar → seguir el texto → palabra por palabra", ko: "듣기 → 자막 보기 → 단어별로 확인" },
     lead: {
-      zh: "学习功能不是另一个 Tab 里的作业，它长在你本来就在做的那件事上。",
-      en: "The learning side isn't homework in another tab. It grows out of the thing you were doing anyway.",
-      ja: "学習機能は別タブの宿題ではありません。もともとしていたことの上に自然に乗っています。",
-      es: "La parte de aprendizaje no son deberes en otra pestaña: nace de lo que ya estabas haciendo.",
-      ko: "학습 기능은 다른 탭에 있는 숙제가 아닙니다. 원래 하고 있던 그 일에서 자라납니다.",
+      zh: "学习功能长在你本来就在做的那件事上。",
+      en: "The learning side grows out of the thing you were doing anyway.",
+      ja: "学習機能は、もともとしていたことの上に自然に乗っています。",
+      es: "La parte de aprendizaje nace de lo que ya estabas haciendo.",
+      ko: "학습 기능은 원래 하고 있던 그 일에서 자라납니다.",
     },
     items: [
       {
